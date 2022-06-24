@@ -6,7 +6,7 @@ router.post("/", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-    res.send("Login Route");
-  });
+  res.send("Login Route");
+});
 
 module.exports = router;
