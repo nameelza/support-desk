@@ -2,6 +2,7 @@
 // @route   /api/users
 // @access  Public
 const registerUser = (req, res) => {
+  console.log(req.body);
   res.send("Register Route");
 };
 
