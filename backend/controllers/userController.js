@@ -53,7 +53,14 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ email });
 
-  res.send("Login Route");
+  //  Check user and passwords match
+  if (user && (await bcrypt.compare(password, user.password))) {
+    res.status(200).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  }
 });
 
 module.exports = {
