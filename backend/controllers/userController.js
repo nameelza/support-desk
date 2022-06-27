@@ -60,6 +60,9 @@ const loginUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
     });
+  } else {
+    res.status(401);
+    throw new Error("Invalid credentials");
   }
 });
 
