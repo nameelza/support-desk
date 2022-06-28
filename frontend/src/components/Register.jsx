@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { useSelector, useDispatch } from "react-redux";
 
 function Register() {
   const [formData, setFormData] = useState({
