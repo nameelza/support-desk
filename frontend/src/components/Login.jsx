@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaUser } from "react-icons/fa";
+import { FaSignInAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 function Login() {
@@ -25,7 +25,7 @@ function Login() {
     <>
       <section className="heading">
         <h1>
-          <FaUser /> Login
+          <FaSignInAlt /> Login
         </h1>
         <p>Please log in</p>
       </section>
