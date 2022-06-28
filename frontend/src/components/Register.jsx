@@ -23,58 +23,75 @@ function Register() {
     e.preventDefault();
 
     if (password !== passwordConfirm) {
-      return toast.error("Passwords didn't match");
+      return toast.error("Passwords do not match");
     }
   };
 
   return (
     <>
-      <section>
+      <section className="heading">
         <h1>
           <FaUser /> Register
         </h1>
         <p>Please create an account</p>
       </section>
-      <section>
+
+      <section className="form">
         <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={name}
-            placeholder="Enter your name"
-            onChange={onChange}
-            required
-          />
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            placeholder="Enter your email"
-            onChange={onChange}
-            required
-          />
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            placeholder="Enter password"
-            onChange={onChange}
-            required
-          />
-          <input
-            type="password"
-            id="passwordConfirm"
-            name="passwordConfirm"
-            value={passwordConfirm}
-            placeholder="Confirm password"
-            onChange={onChange}
-            required
-          />
-          <div>
-            <button className="btn btn-primary">Submit</button>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              name="name"
+              value={name}
+              placeholder="Enter your name"
+              onChange={onChange}
+              required
+              autoComplete="username"
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              name="email"
+              value={email}
+              placeholder="Enter your email"
+              onChange={onChange}
+              required
+              autoComplete="email"
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              value={password}
+              placeholder="Enter password"
+              onChange={onChange}
+              required
+              autoComplete="new-password"
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              className="form-control"
+              id="passwordConfirm"
+              name="passwordConfirm"
+              value={passwordConfirm}
+              placeholder="Confirm password"
+              onChange={onChange}
+              required
+              autoComplete="new-password"
+            />
+          </div>
+          <div className="form-group">
+            <button className="btn btn-block">Submit</button>
           </div>
         </form>
       </section>
