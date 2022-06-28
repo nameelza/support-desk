@@ -4,6 +4,7 @@ import { FaUser } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { register, reset } from "../features/auth/authSlice";
+import Spinner from "./Spinner";
 
 function Register() {
   const dispatch = useDispatch();
@@ -59,7 +60,9 @@ function Register() {
     }
   };
 
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <>
       <section className="heading">
         <h1>
