@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -18,6 +19,14 @@ function Register() {
     }));
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (password !== passwordConfirm) {
+      return toast.error("Passwords didn't match");
+    }
+  };
+
   return (
     <>
       <section>
@@ -27,7 +36,7 @@ function Register() {
         <p>Please create an account</p>
       </section>
       <section>
-        <form onSubmit={onSubmits}>
+        <form onSubmit={onSubmit}>
           <input
             type="text"
             id="name"
