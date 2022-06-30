@@ -1,23 +1,21 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
+import { FaSignInAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-import { register, reset } from "../features/auth/authSlice";
-import Spinner from "./Spinner";
+import { login, reset } from "../features/auth/authSlice";
+import Spinner from "../components/Spinner";
 
-function Register() {
+function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
-    passwordConfirm: "",
   });
 
-  const { name, email, password, passwordConfirm } = formData;
+  const { email, password } = formData;
 
   const { user, isError, isSuccess, isLoading, message } = useSelector(
     (state) => state.auth
@@ -28,7 +26,6 @@ function Register() {
       toast.error(message);
     }
 
-    // Redirect when logged in
     if (isSuccess && user) {
       navigate("/");
     }
@@ -47,17 +44,12 @@ function Register() {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (password !== passwordConfirm) {
-      return toast.error("Passwords do not match");
-    } else {
-      const userData = {
-        name,
-        email,
-        password,
-      };
+    const userData = {
+      email,
+      password,
+    };
 
-      dispatch(register(userData));
-    }
+    dispatch(login(userData));
   };
 
   return isLoading ? (
@@ -66,25 +58,13 @@ function Register() {
     <>
       <section className="heading">
         <h1>
-          <FaUser /> Register
+          <FaSignInAlt /> Login
         </h1>
-        <p>Please create an account</p>
+        <p>Please log in to get support</p>
       </section>
 
       <section className="form">
         <form onSubmit={onSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              value={name}
-              placeholder="Enter your name"
-              onChange={onChange}
-              required
-            />
-          </div>
           <div className="form-group">
             <input
               type="email"
@@ -108,20 +88,7 @@ function Register() {
               placeholder="Enter password"
               onChange={onChange}
               required
-              autoComplete="new-password"
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              className="form-control"
-              id="passwordConfirm"
-              name="passwordConfirm"
-              value={passwordConfirm}
-              placeholder="Confirm password"
-              onChange={onChange}
-              required
-              autoComplete="new-password"
+              autoComplete="current-password"
             />
           </div>
           <div className="form-group">
@@ -133,4 +100,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;
