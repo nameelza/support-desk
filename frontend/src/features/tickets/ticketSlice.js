@@ -13,10 +13,14 @@ const initialState = {
 // Create new ticket
 export const createTicket = createAsyncThunk();
 
-export const authSlice = createSlice({
+export const ticketSlice = createSlice({
   name: "ticket",
   initialState,
   reducers: {
     reset: (state) => initialState,
   },
+  extraReducers: (builder) => {},
 });
+
+export const { reset } = ticketSlice.actions;
+export default ticketSlice.reducer;
