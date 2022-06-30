@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 export const useAuthStatus = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
   const { user } = useSelector((state) => state.auth);
@@ -14,5 +14,5 @@ export const useAuthStatus = () => {
     setLoading(false);
   }, [user]);
 
-  return { loggedIn, isLoading };
+  return { isLoggedIn, isLoading };
 };
