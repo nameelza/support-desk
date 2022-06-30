@@ -29,6 +29,7 @@ function NewTicket() {
     }
 
     dispatch(reset());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError, isSuccess, message]);
 
   const onSubmit = (e) => {
