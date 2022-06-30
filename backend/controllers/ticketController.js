@@ -77,5 +77,6 @@ const createTicket = asyncHandler(async (req, res) => {
 
 module.exports = {
   getTickets,
+  getTicket,
   createTicket,
 };
