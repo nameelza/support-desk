@@ -50,13 +50,13 @@ export const getTickets = createAsyncThunk(
   }
 );
 
-// Get ticket
+// Get user ticket
 export const getTicket = createAsyncThunk(
   "tickets/get",
   async (ticketId, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await ticketService.getTickets(ticketId, token);
+      return await ticketService.getTicket(ticketId, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -102,7 +102,6 @@ export const ticketSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        state.tickets = [];
       })
       .addCase(getTicket.pending, (state) => {
         state.isLoading = true;
@@ -116,7 +115,6 @@ export const ticketSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        state.ticket = {};
       });
   },
 });
