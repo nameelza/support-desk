@@ -1,5 +1,5 @@
 function Ticket() {
-  return <>ticket</>;
+  return <h1>ticket</h1>;
 }
 
 export default Ticket;
