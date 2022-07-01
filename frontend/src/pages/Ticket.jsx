@@ -37,6 +37,14 @@ function Ticket() {
             {ticket.status}
           </span>
         </h2>
+        <h3>
+          Date submitted: {new Date(ticket.createdAt).toLocaleString("en-US")}
+        </h3>
+        <hr />
+        <div className="ticket-desc">
+          <h3>Description of Issue</h3>
+          <p>{ticket.description}</p>
+        </div>
       </header>
     </div>
   );
