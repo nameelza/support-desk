@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { getTicket, reset } from "../features/tickets/ticketSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { getTicket } from "../features/tickets/ticketSlice";
+import { useParams, useNavigate } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 
@@ -20,10 +20,26 @@ function Ticket() {
     }
 
     dispatch(getTicket(ticketId));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isError, ticketId, message]);
+    // eslint-disable-next-line
+  }, [isError, message, ticketId]);
 
-  return <h1>ticket</h1>;
+  return isLoading ? (
+    <Spinner />
+  ) : isError ? (
+    <h3>Something went wrong</h3>
+  ) : (
+    <div className="ticket-page">
+      <header className="ticket-header">
+        <BackButton url="/tickets" />
+        <h2>
+          Ticket ID: {ticket._id}
+          <span className={`status status-${ticket.status}`}>
+            {ticket.status}
+          </span>
+        </h2>
+      </header>
+    </div>
+  );
 }
 
 export default Ticket;
