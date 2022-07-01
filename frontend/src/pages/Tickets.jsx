@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { getTickets, reset } from "../features/tickets/ticketSlice";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
@@ -13,15 +14,17 @@ function Tickets() {
 
   useEffect(() => {
     dispatch(getTickets());
+
+    if (isError) {
+      toast.error(message);
+    }
     return () => {
       if (isSuccess) {
         dispatch(reset());
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess]);
-
-  console.log(tickets);
+  }, [isSuccess, isError]);
 
   return isLoading ? (
     <Spinner />
@@ -33,7 +36,7 @@ function Tickets() {
         <div className="ticket-headings">
           <div>Date</div>
           <div>Product</div>
-          <div>Description</div>
+          <div>Status</div>
           <div></div>
         </div>
         {tickets.map((ticket) => (

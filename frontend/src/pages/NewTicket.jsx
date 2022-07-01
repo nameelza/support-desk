@@ -12,7 +12,7 @@ function NewTicket() {
 
   const { user } = useSelector((user) => user.auth);
   const { isError, isSuccess, isLoading, message } = useSelector(
-    (state) => state.ticket
+    (state) => state.tickets
   );
 
   const { name, email } = user;
