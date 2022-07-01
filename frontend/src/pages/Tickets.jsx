@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getTickets, reset } from "../features/tickets/ticketSlice";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
-import TicketItem from "./TicketItem";
+import TicketItem from "../components/TicketItem";
 
 function Tickets() {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ function Tickets() {
           <div></div>
         </div>
         {tickets.map((ticket) => (
-          <TicketItem key={ticket.id} ticket={ticket} />
+          <TicketItem key={ticket._id} ticket={ticket} />
         ))}
       </div>
     </>
