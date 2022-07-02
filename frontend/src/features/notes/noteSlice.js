@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import noteService from "./noteService";
 
 const initialState = {
@@ -12,10 +12,10 @@ const initialState = {
 // Get ticket notes
 export const getNotes = createAsyncThunk(
   "notes/getAll",
-  async (_, thunkAPI) => {
+  async (ticketId, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await noteService.getNotes(token);
+      return await noteService.getNotes(ticketId, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -32,8 +32,10 @@ export const getNotes = createAsyncThunk(
 export const noteSlice = createSlice({
   name: "note",
   initialState,
-  reducers: { reset: (state) => initialState },
-  extraReducer: (builder) => {
+  reducers: {
+    reset: (state) => initialState,
+  },
+  extraReducers: (builder) => {
     builder
       .addCase(getNotes.pending, (state) => {
         state.isLoading = true;
