@@ -37,7 +37,7 @@ const getTicket = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Ticket not found");
   }
-
+  console.log("user", ticket.user.toString(), req.user.id);
   if (ticket.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error("Not authorized");
